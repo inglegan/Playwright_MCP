@@ -1,0 +1,21 @@
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/allure-results/
+/allure-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Test and package output
+/results.xml
+/coverage/
+npm-debug.log*
+*.log

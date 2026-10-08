@@ -1,0 +1,31 @@
+{
+  "name": "mcp_playwright_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:register": "npx playwright test tests/register-user.spec.js --project=chromium",
+    "test:register:classic": "npx playwright test tests/register-user.spec.js --project=chromium --grep \"registro de usuario exitoso\"",
+    "test:register:gherkin": "npx playwright test tests/register-user.spec.js --project=chromium --grep \"Registro de usuario - versión Gherkin\"",
+    "test:register:invalid-email": "npx playwright test tests/register-user.spec.js --project=chromium --grep \"Registro de usuario - versión validación email inválido\"",
+    "test:login": "npx playwright test tests/login-user.spec.js --project=chromium",
+    "test:login:success": "npx playwright test tests/login-user.spec.js --project=chromium --grep \"login exitoso\"",
+    "test:login:unregistered": "npx playwright test tests/login-user.spec.js --project=chromium --grep \"correo no registrado\"",
+    "test:login:wrong-password": "npx playwright test tests/login-user.spec.js --project=chromium --grep \"contraseña incorrecta\"",
+    "test:pom": "npx playwright test tests/automation-exercise-pom.spec.js --project=chromium",
+    "test:ci": "npx playwright test",
+    "test:allure": "node scripts/run-allure.cjs",
+    "report:allure": "npx allure generate allure-results --output allure-report",
+    "open:allure": "npx allure open allure-report"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/mcp": "^0.0.83",
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.4",
+    "allure": "^3.20.1",
+    "allure-playwright": "^3.13.0"
+  }
+}
