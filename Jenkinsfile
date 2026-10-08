@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    docker {
-      image 'mcr.microsoft.com/playwright:v1.63.0-noble'
-      args '--ipc=host'
-    }
-  }
+  agent any
 
   options {
     timestamps()
