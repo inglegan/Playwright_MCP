@@ -9,7 +9,7 @@ Suite E2E para [Automation Exercise](https://www.automationexercise.com/). Inclu
 - Conexion a Internet: las pruebas interactuan con el sitio publico y sus resultados dependen de su disponibilidad.
 - Para Jenkins: Docker con contenedores Linux, un agente Linux/Docker y los plugins Pipeline, Docker Pipeline y JUnit.
 
-La configuracion activa Chromium y Firefox. WebKit esta deshabilitado. La ejecucion usa un worker para reducir interferencias con el sitio externo.
+La configuracion activa Chromium y Firefox para UI, mas un proyecto `api` sin navegador para las pruebas HTTP. WebKit esta deshabilitado. La ejecucion usa un worker para reducir interferencias con el sitio externo.
 
 ## Instalacion local
 
@@ -46,7 +46,7 @@ Para ejecutar todas las pruebas en Chromium y Firefox:
 npx playwright test
 ```
 
-El proyecto contiene 17 casos; el comando completo los ejecuta en los dos navegadores configurados.
+El proyecto contiene 17 casos UI ejecutados en Chromium y Firefox, 13 casos API ejecutados una vez sin navegador y un cruce de catálogo UI/API en Chromium: 48 ejecuciones en total.
 
 ### Comandos por flujo
 
@@ -63,6 +63,12 @@ Todos los siguientes scripts seleccionan Chromium:
 | `npm run test:login:unregistered` | Rechazo de correo no registrado |
 | `npm run test:login:wrong-password` | Rechazo de contrasena incorrecta |
 | `npm run test:pom` | Los nueve casos ordenados con POM |
+| `npm run test:api` | Casos API 1, 2 y 5–14: GET, POST, PUT y DELETE positivos y negativos |
+| `npm run test:consistency` | Compara IDs, nombres y precios del catálogo web con `productsList` |
+
+Las pruebas API usan el fixture `request` de Playwright y el endpoint publico `/api` de Automation Exercise. Cubren listado/busqueda de productos, validacion de login, creacion, actualizacion, consulta y eliminacion de cuentas. Cada prueba que crea una cuenta usa un email unico y elimina la cuenta al finalizar. El listado y los resultados de busqueda se imprimen en consola.
+
+El cruce UI/API carga `/products` en Chromium y compara los 34 productos visibles con `/api/productsList`. Normaliza espacios no separables y acepta texto publicitario añadido dentro del elemento del nombre, pero reporta IDs ausentes/duplicados, nombres no encontrados y precios diferentes con el ID, ambos valores y una causa probable.
 
 Se puede limitar Playwright a una prueba por su nombre, por ejemplo:
 

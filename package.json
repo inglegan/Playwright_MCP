@@ -13,6 +13,8 @@
     "test:login:unregistered": "npx playwright test tests/login-user.spec.js --project=chromium --grep \"correo no registrado\"",
     "test:login:wrong-password": "npx playwright test tests/login-user.spec.js --project=chromium --grep \"contraseña incorrecta\"",
     "test:pom": "npx playwright test tests/automation-exercise-pom.spec.js --project=chromium",
+    "test:api": "npx playwright test tests/api-testing.spec.js --project=api",
+    "test:consistency": "npx playwright test tests/product-data-consistency.spec.js --project=front-api",
     "test:ci": "npx playwright test",
     "test:allure": "node scripts/run-allure.cjs",
     "report:allure": "npx allure generate allure-results --output allure-report",
