@@ -8,6 +8,7 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+/.playwright-mcp/
 
 # Local environment and secrets
 .env
