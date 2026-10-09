@@ -52,12 +52,25 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
+      testIgnore: ['**/api-testing.spec.js', '**/product-data-consistency.spec.js'],
       use: { ...devices['Desktop Chrome'] },
     },
 
     {
       name: 'firefox',
+      testIgnore: ['**/api-testing.spec.js', '**/product-data-consistency.spec.js'],
       use: { ...devices['Desktop Firefox'] },
+    },
+
+    {
+      name: 'api',
+      testMatch: '**/api-testing.spec.js',
+    },
+
+    {
+      name: 'front-api',
+      testMatch: '**/product-data-consistency.spec.js',
+      use: { ...devices['Desktop Chrome'] },
     },
 
     /* Test against mobile viewports. */
